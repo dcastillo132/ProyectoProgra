@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int esPrimo(int n) {
+    if (n <= 1) return 0;
+    for (int i = 2; i * i <= n; i++)
+        if (n % i == 0) return 0;
+    return 1;
+}
+
+int main() {
+    int num, opcion;
+    int mayor, posMayor, contador = 0;
+
+    int cantPrimos = 0;
+    int sumaPrimos = 0;
+
+    mayor = -2147483648; // valor mínimo de un int
+    posMayor = -1;
+
+    do {
+        printf("Ingrese un número entero: ");
+        scanf("%d", &num);
+        contador++;
+
+        if (esPrimo(num)) {
+            printf("El número %d es un Número Primo.\n", num);
+            cantPrimos++;
+            sumaPrimos += num;
+        } else {
+            printf("El número %d No es un Número Primo.\n", num);
+        }
+
+        if (num > mayor) {
+            mayor = num;
+            posMayor = contador;
+        }
+
+        printf("¿Desea ingresar otro número? (1=Sí, 0=No): ");
+        scanf("%d", &opcion);
+
+    } while (opcion == 1);
+
+    printf("\n--- Estadísticas ---\n");
+    printf("Número mayor ingresado: %d en la posición %d\n", mayor, posMayor);
+    printf("Cantidad de números primos: %d\n", cantPrimos);
+    printf("Sumatoria de los números primos: %d\n", sumaPrimos);
+    if (cantPrimos > 0)
+        printf("Promedio de los números primos: %.2f\n", (float)sumaPrimos / cantPrimos);
+    else
+        printf("Promedio de los números primos: No hay números primos.\n");
+
+    return 0;
+}

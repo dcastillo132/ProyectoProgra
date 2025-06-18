@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    int numero, original, inverso, residuo;
+    int opcion = 1;
+
+    do {
+        
+        do {
+            printf("Ingrese un numero entero (maximo 5 digitos): ");
+            scanf("%d", &numero);
+
+            if (numero < 0 || numero > 99999) {
+                printf("Numero invalido. Debe estar entre 0 y 99999.\n");
+            }
+        } while (numero < 0 || numero > 99999);
+
+        
+        original = numero;
+
+       
+        inverso = 0;
+        while (numero > 0) {
+            residuo = numero % 10;             
+            inverso = inverso * 10 + residuo;  
+            numero = numero / 10;              
+        }
+
+        
+        printf("Numero ingresado: %d\n", original);
+        printf("Numero inverso: %d\n", inverso);
+
+        
+        printf("Desea ingresar otro numero? (1=Si, 0=No): ");
+        scanf("%d", &opcion);
+
+    } while (opcion == 1);
+
+    return 0;
+}
